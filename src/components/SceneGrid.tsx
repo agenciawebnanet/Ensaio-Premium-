@@ -19,9 +19,7 @@ export const SceneGrid: React.FC<SceneGridProps> = ({
     <ul className="grade" role="list">
       {scenes.map((scene, index) => {
         const isSelected = selectedCodes.includes(scene.cod);
-        const codeDisplay = scene.cod.startsWith('F') || scene.cod.startsWith('M')
-          ? scene.cod
-          : `N° ${scene.cod}`;
+        const codeDisplay = `N° ${scene.cod}`;
 
         // Top 8 photos are above the fold: load immediately with high priority
         const isAboveTheFold = index < 8;
@@ -50,8 +48,7 @@ export const SceneGrid: React.FC<SceneGridProps> = ({
                   height={scene.height}
                   alt={`Cena ${scene.cod}`}
                   loading={isAboveTheFold ? 'eager' : 'lazy'}
-                  // @ts-expect-error fetchpriority is standard in modern browsers
-                  fetchpriority={isAboveTheFold ? 'high' : 'auto'}
+                  fetchPriority={isAboveTheFold ? 'high' : 'auto'}
                   decoding="async"
                   className="w-full h-full object-cover transition-opacity duration-300"
                 />

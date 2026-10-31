@@ -135,8 +135,8 @@ export const CategoryView: React.FC<CategoryViewProps> = ({
   };
 
   const isInfantil = category.id === 'infantil';
-  const meninasScenes = useMemo(() => category.scenes.filter((s) => s.cod.startsWith('F')), [category.scenes]);
-  const meninosScenes = useMemo(() => category.scenes.filter((s) => s.cod.startsWith('M')), [category.scenes]);
+  const meninasScenes = useMemo(() => category.scenes.filter((s) => s.section === 'meninas'), [category.scenes]);
+  const meninosScenes = useMemo(() => category.scenes.filter((s) => s.section === 'meninos'), [category.scenes]);
 
   return (
     <>
@@ -170,7 +170,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({
 
             <section className="secao" id="meninas">
               <h2>Meninas</h2>
-              <p>F01 a F25</p>
+              <p>171 a 195</p>
               <SceneGrid
                 scenes={meninasScenes}
                 selectedCodes={selectedCodes}
@@ -181,7 +181,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({
 
             <section className="secao" id="meninos">
               <h2>Meninos</h2>
-              <p>M01 a M25</p>
+              <p>196 a 220</p>
               <SceneGrid
                 scenes={meninosScenes}
                 selectedCodes={selectedCodes}

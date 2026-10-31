@@ -90,9 +90,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
     }
   };
 
-  const codeDisplay = scene.cod.startsWith('F') || scene.cod.startsWith('M')
-    ? scene.cod
-    : `N° ${scene.cod}`;
+  const codeDisplay = `N° ${scene.cod}`;
 
   return (
     <div className="visor" role="dialog" aria-modal="true" aria-label="Foto da cena em tamanho grande">
@@ -129,8 +127,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
           alt={`Cena ${scene.cod}`}
           className="select-none animate-fadeIn"
           loading="eager"
-          // @ts-expect-error fetchpriority is standard in modern browsers
-          fetchpriority="high"
+          fetchPriority="high"
           decoding="async"
         />
 
