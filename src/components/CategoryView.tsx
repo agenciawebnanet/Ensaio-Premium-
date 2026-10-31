@@ -215,6 +215,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({
         scene={activeLightboxScene}
         currentIndex={lightboxIndex}
         totalScenes={category.scenes.length}
+        allScenes={category.scenes}
         isSelected={activeLightboxScene ? selectedCodes.includes(activeLightboxScene.cod) : false}
         onClose={() => setActiveLightboxScene(null)}
         onPrev={handlePrevLightbox}

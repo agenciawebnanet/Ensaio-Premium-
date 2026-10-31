@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Plus, Check } from 'lucide-react';
 import { Scene } from '../data/catalogData';
 
@@ -17,11 +17,14 @@ export const SceneGrid: React.FC<SceneGridProps> = ({
 }) => {
   return (
     <ul className="grade" role="list">
-      {scenes.map((scene) => {
+      {scenes.map((scene, index) => {
         const isSelected = selectedCodes.includes(scene.cod);
         const codeDisplay = scene.cod.startsWith('F') || scene.cod.startsWith('M')
           ? scene.cod
           : `N° ${scene.cod}`;
+
+        // Top 8 photos are above the fold: load immediately with high priority
+        const isAboveTheFold = index < 8;
 
         return (
           <li
@@ -29,10 +32,15 @@ export const SceneGrid: React.FC<SceneGridProps> = ({
             className={`cena ${isSelected ? 'escolhida' : ''}`}
             data-cod={scene.cod}
           >
-            <div className="foto-container relative">
+            <div
+              className="foto-container relative bg-[#17150f] overflow-hidden"
+              style={{
+                aspectRatio: `${scene.width} / ${scene.height}`,
+              }}
+            >
               <button
                 type="button"
-                className="foto-btn"
+                className="foto-btn w-full h-full block"
                 aria-label={`Ver a cena ${scene.cod} grande`}
                 onClick={() => onOpenLightbox(scene)}
               >
@@ -41,9 +49,11 @@ export const SceneGrid: React.FC<SceneGridProps> = ({
                   width={scene.width}
                   height={scene.height}
                   alt={`Cena ${scene.cod}`}
-                  loading="lazy"
+                  loading={isAboveTheFold ? 'eager' : 'lazy'}
+                  // @ts-expect-error fetchpriority is standard in modern browsers
+                  fetchpriority={isAboveTheFold ? 'high' : 'auto'}
                   decoding="async"
-                  className="w-full h-auto bg-[#17150f] object-cover"
+                  className="w-full h-full object-cover transition-opacity duration-300"
                 />
               </button>
 

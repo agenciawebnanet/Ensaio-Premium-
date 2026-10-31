@@ -6,6 +6,7 @@ interface LightboxProps {
   scene: Scene | null;
   currentIndex: number;
   totalScenes: number;
+  allScenes?: Scene[];
   isSelected: boolean;
   onClose: () => void;
   onPrev: () => void;
@@ -17,6 +18,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
   scene,
   currentIndex,
   totalScenes,
+  allScenes,
   isSelected,
   onClose,
   onPrev,
@@ -25,6 +27,19 @@ export const Lightbox: React.FC<LightboxProps> = ({
 }) => {
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
+
+  // Preload adjacent images for instant transitions
+  useEffect(() => {
+    if (!allScenes || currentIndex < 0) return;
+    if (currentIndex < allScenes.length - 1) {
+      const nextImg = new Image();
+      nextImg.src = allScenes[currentIndex + 1].cheia;
+    }
+    if (currentIndex > 0) {
+      const prevImg = new Image();
+      prevImg.src = allScenes[currentIndex - 1].cheia;
+    }
+  }, [currentIndex, allScenes]);
 
   useEffect(() => {
     if (!scene) return;
@@ -114,6 +129,9 @@ export const Lightbox: React.FC<LightboxProps> = ({
           alt={`Cena ${scene.cod}`}
           className="select-none animate-fadeIn"
           loading="eager"
+          // @ts-expect-error fetchpriority is standard in modern browsers
+          fetchpriority="high"
+          decoding="async"
         />
 
         <button
