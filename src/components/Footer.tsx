@@ -1,6 +1,6 @@
 import React from 'react';
-import { MessageSquare } from 'lucide-react';
-import { WHATSAPP_FORMATTED, getWhatsAppUrl } from '../utils/whatsapp';
+import { Send } from 'lucide-react';
+import { TELEGRAM_BOT_URL } from '../utils/telegram';
 
 interface FooterProps {
   isHome?: boolean;
@@ -17,17 +17,17 @@ export const Footer: React.FC<FooterProps> = ({ isHome = false, onNavigateHome }
 
       <hr className="fio" />
 
-      <p className="romana">Envie suas escolhas pelo WhatsApp</p>
+      <p className="romana">Envie suas escolhas pelo Telegram</p>
 
       <div className="mt-4 flex justify-center">
         <a
-          href={getWhatsAppUrl('Olá! Gostaria de falar com o atendimento comercial do Estúdio Premium.')}
+          href={TELEGRAM_BOT_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-whatsapp inline-flex items-center text-xs tracking-widest px-4 py-2.5 rounded-sm shadow-md"
+          className="btn-telegram inline-flex items-center text-xs tracking-widest px-4 py-2.5 rounded-sm shadow-md"
         >
-          <MessageSquare className="w-4 h-4 text-[#0e0d0b]" />
-          <span>WhatsApp de Vendas: {WHATSAPP_FORMATTED}</span>
+          <Send className="w-4 h-4 text-[#0e0d0b]" />
+          <span>Falar no Telegram</span>
         </a>
       </div>
 

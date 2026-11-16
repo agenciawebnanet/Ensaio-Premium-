@@ -1,8 +1,9 @@
 import React from 'react';
-import { MessageSquare, Copy } from 'lucide-react';
-import { getWhatsAppUrl, formatSelectionMessage, formatCopyText } from '../utils/whatsapp';
+import { Send, Copy } from 'lucide-react';
+import { codificarSelecao, formatCopyText, linkSelecao } from '../utils/telegram';
 
 interface SelectionBarProps {
+  categoryId: string;
   categoryTitle: string;
   selectedCodes: string[];
   onClear: () => void;
@@ -10,6 +11,7 @@ interface SelectionBarProps {
 }
 
 export const SelectionBar: React.FC<SelectionBarProps> = ({
+  categoryId,
   categoryTitle,
   selectedCodes,
   onClear,
@@ -36,23 +38,27 @@ export const SelectionBar: React.FC<SelectionBarProps> = ({
         document.execCommand('copy');
         document.body.removeChild(textarea);
       }
-      onToast('Copiado! Agora é só colar na conversa do WhatsApp.');
+      onToast('Copiado! Agora é só colar na conversa do bot no Telegram.');
     } catch {
-      onToast(`Envie no WhatsApp: ${text}`);
+      onToast(`Envie no Telegram: ${text}`);
     }
   };
 
-  const handleSendWhatsApp = () => {
-    const msg = formatSelectionMessage(categoryTitle, selectedCodes);
-    const url = getWhatsAppUrl(msg);
-    window.open(url, '_blank', 'noopener,noreferrer');
+  const handleSendTelegram = () => {
+    const cabeNoLink = codificarSelecao(categoryId, selectedCodes) !== null;
+    if (!cabeNoLink) {
+      onToast(
+        `São muitas cenas para o link automático. Copie os números e cole na conversa do bot no Telegram.`,
+      );
+    }
+    window.open(linkSelecao(categoryId, selectedCodes), '_blank', 'noopener,noreferrer');
   };
 
   return (
     <div className="escolhas" aria-label="Cenas selecionadas">
       <div className="lista" aria-live="polite">
         <b>{countLabel}</b>
-        <span title={listStr}>{listStr}</span>
+        <span title={`${categoryTitle} — ${listStr}`}>{listStr}</span>
       </div>
 
       <button type="button" className="limpar" onClick={onClear}>
@@ -61,7 +67,7 @@ export const SelectionBar: React.FC<SelectionBarProps> = ({
 
       <button
         type="button"
-        className="btn-ouro"
+        className="btn-linha"
         onClick={handleCopy}
         title="Copiar números para área de transferência"
       >
@@ -71,12 +77,12 @@ export const SelectionBar: React.FC<SelectionBarProps> = ({
 
       <button
         type="button"
-        className="btn-whatsapp"
-        onClick={handleSendWhatsApp}
-        title="Enviar números diretamente no WhatsApp (11) 92693-3436"
+        className="btn-telegram"
+        onClick={handleSendTelegram}
+        title="Abrir o bot no Telegram com estas cenas já selecionadas"
       >
-        <MessageSquare className="w-3.5 h-3.5" />
-        <span>Enviar no WhatsApp</span>
+        <Send className="w-3.5 h-3.5" />
+        <span>Enviar no Telegram</span>
       </button>
     </div>
   );

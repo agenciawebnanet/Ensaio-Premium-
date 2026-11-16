@@ -498,8 +498,8 @@ button {
   transform: scale(0.98);
 }
 
-.btn-whatsapp {
-  background: #25d366;
+.btn-telegram {
+  background: var(--ouro);
   color: #0e0d0b;
   border: 0;
   padding: 13px 18px;
@@ -516,9 +516,9 @@ button {
   text-decoration: none;
 }
 
-.btn-whatsapp:hover {
-  background: #20ba59;
-  color: #0e0d0b;
+.btn-telegram:hover {
+  background: var(--ouro-hover);
+  color: var(--tinta);
 }
 
 .btn-linha {

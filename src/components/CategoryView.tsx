@@ -205,6 +205,7 @@ export const CategoryView: React.FC<CategoryViewProps> = ({
       <Footer isHome={false} onNavigateHome={onNavigateHome} />
 
       <SelectionBar
+        categoryId={category.id}
         categoryTitle={category.title}
         selectedCodes={sortedSelectedCodes}
         onClear={handleClear}

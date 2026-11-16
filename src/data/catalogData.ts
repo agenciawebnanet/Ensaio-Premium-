@@ -26,8 +26,6 @@ export interface CatalogCategory {
   scenes: Scene[];
 }
 
-export const WHATSAPP_NUMBER = '11926933436';
-export const WHATSAPP_FORMATTED = '(11) 92693-3436';
 export const BRAND_LOGO = '/assets/aistudio/Logo_premium_de_fotografia_dourado_86e4b0a6.png';
 
 export const CATALOG_CATEGORIES: Record<string, CatalogCategory> = {
@@ -52,7 +50,7 @@ export const CATALOG_CATEGORIES: Record<string, CatalogCategory> = {
       {
         "num": "III",
         "title": "Envie os números",
-        "desc": "Copie os números e cole na nossa conversa do WhatsApp."
+        "desc": "Toque em Enviar no Telegram: a conversa já abre com as cenas escolhidas."
       }
     ],
     "scenes": [
@@ -709,7 +707,7 @@ export const CATALOG_CATEGORIES: Record<string, CatalogCategory> = {
       {
         "num": "III",
         "title": "Envie os números",
-        "desc": "Copie os números e cole na nossa conversa do WhatsApp."
+        "desc": "Toque em Enviar no Telegram: a conversa já abre com as cenas escolhidas."
       }
     ],
     "scenes": [
@@ -1186,7 +1184,7 @@ export const CATALOG_CATEGORIES: Record<string, CatalogCategory> = {
       {
         "num": "III",
         "title": "Enviem os números",
-        "desc": "Copie os números e cole na nossa conversa do WhatsApp."
+        "desc": "Toque em Enviar no Telegram: a conversa já abre com as cenas escolhidas."
       }
     ],
     "scenes": [
@@ -1663,7 +1661,7 @@ export const CATALOG_CATEGORIES: Record<string, CatalogCategory> = {
       {
         "num": "III",
         "title": "Envie os números",
-        "desc": "Copie os números e cole na nossa conversa do WhatsApp."
+        "desc": "Toque em Enviar no Telegram: a conversa já abre com as cenas escolhidas."
       }
     ],
     "scenes": [
@@ -2140,7 +2138,7 @@ export const CATALOG_CATEGORIES: Record<string, CatalogCategory> = {
       {
         "num": "III",
         "title": "Envie os números",
-        "desc": "Copie os números e cole na nossa conversa do WhatsApp."
+        "desc": "Toque em Enviar no Telegram: a conversa já abre com as cenas escolhidas."
       }
     ],
     "scenes": [
@@ -2609,7 +2607,7 @@ export const CATALOG_CATEGORIES: Record<string, CatalogCategory> = {
       {
         "num": "III",
         "title": "Envie os números",
-        "desc": "Copie os números e cole na nossa conversa do WhatsApp."
+        "desc": "Toque em Enviar no Telegram: a conversa já abre com as cenas escolhidas."
       }
     ],
     "scenes": [
